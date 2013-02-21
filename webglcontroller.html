@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>
+			Web GL Test
+		</title>
+	</head>
+	<body onload="start();">
+
+		<canvas id="glcanvas" width="720" height="450">  
+    		Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.  
+  		</canvas>
+
+		<button onclick="goFullscreen();">Full Screen</button>
+
+		<script src="sylvester.js"></script>
+		<script src="glUtils.js"></script>
+
+		<script id="shader-fs" type="x-shader/x-fragment">  
+	        varying lowp vec4 vColor;  
+	          
+	      void main(void) {  
+	        gl_FragColor = vColor;  
+	      }  
+	    </script> 
+
+		<script id="shader-vs" type="x-shader/x-vertex">  
+		      attribute vec3 aVertexPosition;  
+		      attribute vec4 aVertexColor;  
+		      
+		      uniform mat4 uMVMatrix;  
+		      uniform mat4 uPMatrix;  
+		        
+		      varying lowp vec4 vColor;  
+		      
+		      void main(void) {  
+		        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);  
+		        vColor = aVertexColor;  
+		      }  
+		</script> 
+
+		<script src="gamepad.js"></script>
+		<script src="keyboard.js"></script>
+		<script src="demo.js"></script>
+		<script src="matrixOps.js"></script>
+	</body>
+</html>
